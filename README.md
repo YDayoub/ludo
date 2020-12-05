@@ -1,5 +1,6 @@
-#ludo
-	1- find dice center
- 	1- crop the image around the dice
- 	2- do hough transform
- 	3- count the dots
+# ludo  
+To read dice value, we follow these steps:  
+- find dice center  
+- crop the image around the dice  
+- do hough transform  
+- count the dots  
