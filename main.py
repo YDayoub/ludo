@@ -12,17 +12,16 @@ circles = cv2.HoughCircles(Ig, cv2.HOUGH_GRADIENT, dp=1, minDist=rows / 30,
                            minRadius=1, maxRadius=50)
 # save the results into file
 
-file = open('coordinates.txt', 'w')
-if circles is not None:
-    # sort circles ascending according to the radius
-    circles = sorted(circles[0, :, :].tolist(), key=lambda x: x[2])  # x is [cx,cy,radius]
-    circles = np.uint16(np.around(circles))
-    for i in circles:
-        center = (i[0], i[1])
-        radius = i[2]
-        cv2.circle(src, center, radius, (0, 0, 0), 3)
-        file.write(f"X:{i[0]}, Y:{i[1]}\n")
-file.close()
+with open('coordinates.txt', 'w') as file:
+    if circles is not None:
+        # sort circles ascending according to the radius
+        circles = sorted(circles[0, :, :].tolist(), key=lambda x: x[2])  # x is [cx,cy,radius]
+        circles = np.uint16(np.around(circles))
+        for i in circles:
+            center = (i[0], i[1])
+            radius = i[2]
+            cv2.circle(src, center, radius, (0, 0, 0), 3)
+            file.write(f"X:{i[0]}, Y:{i[1]}\n")
 
 
 cv2.waitKey(0)
